@@ -1,4 +1,4 @@
-digraph MergeSortDetailed {
+digraph QuickSort {
     node [shape=box, style="rounded,filled"];
 
     subgraph cluster_init {
