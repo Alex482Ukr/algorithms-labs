@@ -1,0 +1,67 @@
+digraph MergeSortDetailed {
+    node [shape=box, style="rounded,filled"];
+
+    subgraph cluster_init {
+        label="Основний виклик";
+        Start [label="[38, 15, 50, 99, 41, 52, 47, 65, 95]"];
+    }
+
+    subgraph cluster_left {
+        label="Лівий підмасив";
+        
+        LL [label="[15]"];
+        Start -> LL [label="l = 0, r = 0"];
+            
+    }
+
+    subgraph cluster_right {
+        label="Правий підмасив";
+        
+        LR [label="[38, 50, 99, 41, 52, 47, 65, 95]"];
+        Start -> LR [label="l = 1, r = 8"];
+        
+            LRL [label="[38]"];
+            LR -> LRL [label="l = 1, r = 1"];
+            
+            
+            LRR [label="[50, 99, 41, 52, 47, 65, 95]"];
+            LR -> LRR [label="l = 2, r = 8"];
+            
+                LRRL [label="[47, 41]"];
+                LRR -> LRRL [label="l = 2, r = 3"];
+                
+                    LRRLL [label="[41]"];
+                    LRRL -> LRRLL [label="l = 2, r = 2"];
+                    
+                    LRRLR [label="[47]"];
+                    LRRL -> LRRLR [label="l = 3, r = 3"];
+                
+                LRRR [label="[99, 52, 50, 65, 95]"];
+                LRR -> LRRR [label="l = 4, r = 8"];
+                
+                    LRRRL [label="[95, 52, 50, 65]"];
+                    LRRR -> LRRRL [label="l = 4, r = 7"];
+                    
+                        LRRRLL [label="[65, 52, 50]"];
+                        LRRRL -> LRRRLL [label="l = 4, r = 6"];
+                        
+                            LRRRLLL [label="[50, 52]"];
+                            LRRRLL -> LRRRLLL [label="l = 4, r = 5"];
+                            
+                                LRRRLLLL [label="[50]"];
+                                LRRRLLL -> LRRRLLLL [label="l = 4, r = 4"];
+                                
+                                LRRRLLLR [label="[52]"];
+                                LRRRLLL -> LRRRLLLR [label="l = 5, r = 5"];
+                            
+                            LRRRLLR [label="[65]"];
+                            LRRRLL -> LRRRLLR [label="l = 6, r = 6"];
+                            
+                        LRRRLR [label="[95]"];
+                        LRRRL -> LRRRLR [label="l = 7, r = 7"];
+                        
+                    LRRRR [label="[99]"];
+                    LRRR -> LRRRR [label="l = 8, r = 8"];
+    }
+
+}

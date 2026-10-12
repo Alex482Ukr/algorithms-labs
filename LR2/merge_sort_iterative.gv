@@ -1,0 +1,32 @@
+digraph MergeSortIterative {
+    node [shape=box, style="rounded,filled"];
+
+    Start [label="Початковий масив\n[38, 15, 50, 99, 41, 52, 47, 65, 95]"];
+
+    Merge1_1 [label="Злиття [38] та [15]\n[32, 15]"];
+    Merge1_2 [label="Злиття [50] та [99]\n[50, 99]"];
+    Merge1_3 [label="Злиття [41] та [52]\n[41, 52]"];
+    Merge1_4 [label="Злиття [47] та [65]\n[47, 65]"];
+
+    Merge2_1 [label="Злиття [15, 38] та [50, 99]\n[15, 38, 50, 99]"];
+    Merge2_2 [label="Злиття [41, 52] та [47, 65]\n[41, 47, 52, 65]"];
+    
+    Merge3 [label="Злиття [15, 38, 50, 99] та [41, 47, 52, 65]\n[15, 38, 41, 47, 50, 52, 65, 99]"];
+
+    FinalMerge [label="Злиття [15, 38, 41, 47, 50, 52, 65, 99] та [95]\n[15, 38, 41, 47, 50, 52, 65, 95, 99]"];
+
+    Start -> Merge1_1;
+    Start -> Merge1_2;
+    Start -> Merge1_3;
+    Start -> Merge1_4;
+
+    Merge1_1 -> Merge2_1 [style=dotted, label=" Злиття"];
+    Merge1_2 -> Merge2_1 [style=dotted, label=" Злиття"];
+    Merge1_3 -> Merge2_2 [style=dotted, label=" Злиття"];
+    Merge1_4 -> Merge2_2 [style=dotted, label=" Злиття"];
+
+    Merge2_1 -> Merge3 [style=dotted, label=" Злиття"];
+    Merge2_2 -> Merge3 [style=dotted, label=" Злиття"];
+    
+    Merge3 -> FinalMerge [style=dotted, label=" Фінальне злиття"];
+}

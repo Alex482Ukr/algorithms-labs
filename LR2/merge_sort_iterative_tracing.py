@@ -1,0 +1,73 @@
+def merge_sort_iterative(a):
+    n = len(a)
+    comparisons = 0
+    assignments = 0
+    i = 1
+    while i < n:
+        j = 0
+        while j < n - i:
+            print("----------------------------------------------")
+            left = j
+            mid = j + i
+            right = min(j + 2 * i, n)
+            # Викликаємо допоміжну функцію merge, яка повертає підраховані операції
+            print(f"Об'єднуємо підмасиви: a[{left}:{mid}] ({a[left:mid]}) і a[{mid}:{right}] ({a[mid:right]})")
+            c, a_count = merge(a, left, mid, right)
+            comparisons += c
+            assignments += a_count
+            print("Масив після об'єднання:", a)
+            j += 2 * i
+        i *= 2
+    print("----------------------------------------------")
+    return a, comparisons, assignments
+
+def merge(a, left, mid, right):
+    comparisons = 0
+    assignments = 0
+    n1 = mid - left
+    n2 = right - mid
+    # Створюємо тимчасові підмасиви
+    L = a[left:mid]
+    R = a[mid:right]
+    assignments += n1 + n2
+    it1 = 0
+    it2 = 0
+    k = left
+    assignments += 2 # присвоєння it1, it2
+    assignments += 1 # присвоєння k
+    # Зливаємо елементи, порівнюючи їх
+    while it1 < n1 and it2 < n2:
+        comparisons += 1
+        print(f"    Порівняння: {L[it1]} < {R[it2]}")
+        if L[it1] < R[it2]:
+            a[k] = L[it1]
+            it1 += 1
+            assignments += 1
+        else:
+            a[k] = R[it2]
+            it2 += 1
+            assignments += 1
+        k += 1
+        assignments += 1
+    # Копіюємо елементи, що залишилися з першого підмасиву
+    while it1 < n1:
+        a[k] = L[it1]
+        it1 += 1
+        k += 1
+        assignments += 1
+    # Копіюємо елементи, що залишилися з другого підмасиву
+    while it2 < n2:
+        a[k] = R[it2]
+        it2 += 1
+        k += 1
+        assignments += 1
+    return comparisons, assignments
+
+# Приклад використання
+my_list = [38, 15, 50, 99, 41, 52, 47, 65, 95]  # Варіант 1
+print("--- ІТЕРАТИВНА ВЕРСІЯ ---")
+print("Оригінальний список:", my_list)
+sorted_list, comps, assigs = merge_sort_iterative(my_list.copy())
+print("Відсортований список:", sorted_list)
+print(f"Кількість порівнянь: {comps}")
+print(f"Кількість присвоювань: {assigs}")
