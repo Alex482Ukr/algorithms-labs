@@ -64,7 +64,7 @@ def merge(a, left, mid, right):
     return comparisons, assignments
 
 # Приклад використання
-my_list = [38, 15, 50, 99, 41, 52, 47, 65, 95]  # Варіант 1
+my_list = [10, 90, 95, 30, 45, 60, 57, 28, 5]  # Варіант 14
 print("--- ІТЕРАТИВНА ВЕРСІЯ ---")
 print("Оригінальний список:", my_list)
 sorted_list, comps, assigs = merge_sort_iterative(my_list.copy())

@@ -74,7 +74,7 @@ def partition(a, l, r, indent=0):
 
 print("--- Quicksort за схемою Хоара з трасуванням ---")
 # Приклад використання
-my_list = [38, 15, 50, 99, 41, 52, 47, 65, 95]  # Варіант 1
+my_list = [10, 90, 95, 30, 45, 60, 57, 28, 5]  # Варіант 14
 original_list = my_list.copy()
 print("Оригінальний список:", original_list)
 total_comparisons, total_assignments, total_recursive_calls = quicksort(my_list, 0, len(my_list) - 1)

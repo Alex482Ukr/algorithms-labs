@@ -3,49 +3,50 @@ digraph MergeSortRecursive {
 
     subgraph cluster_init {
         label="Початковий виклик";
-        Start [label="[38, 15, 50, 99, 41, 52, 47, 65, 95]"];
+        Start [label="[10, 90, 95, 30, 45, 60, 57, 28, 5]"];
     }
 
     subgraph cluster_split {
         label="Етап розділення";
         
-        Split1_L [label="[38, 15, 50, 99]"];
-        Split1_R [label="[41, 52, 47, 65, 95]"];
+        Split1_L [label="[10, 90, 95, 30]"];
+        Split1_R [label="[45, 60, 57, 28, 5]"];
         
-        Split2_L1 [label="[38, 15]"];
-        Split2_L2 [label="[50, 99]"];
-        Split2_R1 [label="[41, 52]"];
-        Split2_R2 [label="[47, 65, 95]"];
+        Split2_L1 [label="[10, 90]"];
+        Split2_L2 [label="[95, 30]"];
+        Split2_R1 [label="[45, 60]"];
+        Split2_R2 [label="[57, 28, 5]"];
         
-        Leaf_38 [label="[38]"];
-        Leaf_15 [label="[15]"];
-        Leaf_50 [label="[50]"];
-        Leaf_99 [label="[99]"];
+        Leaf_10 [label="[10]"];
+        Leaf_90 [label="[90]"];
         
-        Leaf_41 [label="[41]"];
-        Leaf_52 [label="[52]"];
-        
-        Leaf_47 [label="[47]"];
-        Split3 [label="[65, 95]"];
-        
-        Leaf_65 [label="[65]"];
         Leaf_95 [label="[95]"];
+        Leaf_30 [label="[30]"];
+        
+        Leaf_45 [label="[45]"];
+        Leaf_60 [label="[60]"];
+        
+        Leaf_57 [label="[57]"];
+        Split3 [label="[28, 5]"];
+        
+        Leaf_28 [label="[28]"];
+        Leaf_5 [label="[5]"];
     }
 
     subgraph cluster_merge {
         label="Етап злиття";
         
-        Merge1_1 [label="[15, 38]"];
-        Merge1_2 [label="[50, 99]"];
-        Merge1_3 [label="[41, 52]"];
-        Merge1_4 [label="[65, 95]"];
+        Merge1_1 [label="[10, 90]"];
+        Merge1_2 [label="[30, 95]"];
+        Merge1_3 [label="[45, 60]"];
+        Merge1_4 [label="[5, 28]"];
         
-        Merge2 [label="[47, 65, 95]"];
+        Merge2 [label="[5, 28, 57]"];
         
-        Merge3_1 [label="[15, 38, 50, 99]"];
-        Merge3_2 [label="[41, 47, 52, 65, 95]"];
+        Merge3_1 [label="[10, 30, 90, 95]"];
+        Merge3_2 [label="[5, 28, 45, 57, 60]"];
         
-        Final [label="[15, 38, 41, 47, 50, 52, 65, 95, 99]"];
+        Final [label="[5, 10, 28, 30, 45, 57, 60, 90, 95]"];
     }
 
     Start -> Split1_L [label="ліва частина"];
@@ -57,36 +58,36 @@ digraph MergeSortRecursive {
     Split1_R -> Split2_R1;
     Split1_R -> Split2_R2;
     
-    Split2_L1 -> Leaf_38;
-    Split2_L1 -> Leaf_15;
+    Split2_L1 -> Leaf_10;
+    Split2_L1 -> Leaf_90;
     
-    Split2_L2 -> Leaf_99;
-    Split2_L2 -> Leaf_50;
+    Split2_L2 -> Leaf_95;
+    Split2_L2 -> Leaf_30;
     
-    Split2_R1 -> Leaf_41;
-    Split2_R1 -> Leaf_52;
+    Split2_R1 -> Leaf_45;
+    Split2_R1 -> Leaf_60;
     
+    Split2_R2 -> Leaf_57;
     Split2_R2 -> Split3;
-    Split2_R2 -> Leaf_47;
     
-    Split3 -> Leaf_65;
-    Split3 -> Leaf_95;
+    Split3 -> Leaf_28;
+    Split3 -> Leaf_5;
 
 
-    Leaf_15 -> Merge1_1 [style=dotted];
-    Leaf_38 -> Merge1_1 [style=dotted];
+    Leaf_10 -> Merge1_1 [style=dotted];
+    Leaf_90 -> Merge1_1 [style=dotted];
     
-    Leaf_50 -> Merge1_2 [style=dotted];
-    Leaf_99 -> Merge1_2 [style=dotted];
+    Leaf_95 -> Merge1_2 [style=dotted];
+    Leaf_30 -> Merge1_2 [style=dotted];
     
-    Leaf_41 -> Merge1_3 [style=dotted];
-    Leaf_52 -> Merge1_3 [style=dotted];
+    Leaf_45 -> Merge1_3 [style=dotted];
+    Leaf_60 -> Merge1_3 [style=dotted];
     
-    Leaf_65 -> Merge1_4 [style=dotted];
-    Leaf_95 -> Merge1_4 [style=dotted];
+    Leaf_28 -> Merge1_4 [style=dotted];
+    Leaf_5 -> Merge1_4 [style=dotted];
     
+    Leaf_57 -> Merge2 [style=dotted];
     Merge1_4 -> Merge2 [style=dotted];
-    Leaf_47 -> Merge2 [style=dotted];
     
     Merge1_1 -> Merge3_1 [style=dotted];
     Merge1_2 -> Merge3_1 [style=dotted];
